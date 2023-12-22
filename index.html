@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/logo.ico" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>WeatherApp 2.0</title>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <i class='bx'><img src="assets/logo.svg"></i>
+            <div class="logo-name"><span>WeatherApp </span>2.0</div>
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a href="#"><i class='bx bxs-dashboard'></i>Clima</a></li>
+            <li><a href="#"><i class='bx bx-message-square-dots'></i>Informações</a></li>
+            <li><a href="#"><i class='bx bx-cog'></i>Configurações</a></li>
+        </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Pesquise sua localização">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
+            <a href="#" class="notif">
+                <i class='bx bx-bell'></i>
+                <span class="count">12</span>
+            </a>
+        </nav>
+
+        <!-- End of Navbar -->
+
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>País / City</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">
+                                Nome do local encontrado
+                            </a></li>
+                    </ul>
+                </div>
+                <a class="data-container">
+                    <i class='bx bx-time'></i>
+                    <span>19:57</span>|
+                    <span>Sábado, 19 de dezembro de 2023</span>
+                </a>
+            </div>
+
+            <!-- Insights -->
+            <ul class="insights">
+                <li>
+                    <i class='bx bxs-thermometer'></i>
+                    <span class="info">
+                        <h3>
+                            26 <span>°C</span>
+                        </h3>
+                        <p>Temperatura</p>
+                    </span>
+                </li>
+                <li><i class='bx bxs-thermometer'></i>
+                    <span class="info">
+                        <h3>
+                            25 <span>°C</span>
+                        </h3>
+                        <p>Sensação Térmica</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-droplet'></i>
+                    <span class="info">
+                        <h3>
+                            88 <span>%</span>
+                        </h3>
+                        <p>Umidade do ar</p>
+                    </span>
+                </li>
+                <li><i class='bx bx-wind'></i>
+                    <span class="info">
+                        <h3>
+                            11 <span>km/h</span>
+                        </h3>
+                        <p>Velocidade do vento</p>
+                    </span>
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-sun'></i>
+                        <h3>Céu limpo</h3>
+                    </div>
+                    <p>Descrição</p>
+                    <div class="description" style="justify-content: center; text-align: center;">
+                        <img src="assets/day/clear.svg" style="height: 200px;">
+                    </div>
+                </div>
+
+                <!-- Reminders -->
+                <div class="reminders">
+                    <div class="header">
+                        <i class='bx bx-list-ul'></i>
+                        <h3>Previsão de 7 dias</h3>
+                    </div>
+                    <ul class="task-list">
+                        <li class="weather-prevision">
+                            <div class="task-title">
+                                <p>Dia tal</p>
+                            </div>
+                            <i class='bx bxs-chevron-down-circle'></i>
+                        </li>
+                        <li class="weather-prevision">
+                            <div class="task-title">
+                                <p>Dia tal</p>
+                            </div>
+                            <i class='bx bxs-chevron-down-circle'></i>
+                        </li>
+                        <li class="weather-prevision">
+                            <div class="task-title">
+                                <p>Dia tal</p>
+                            </div>
+                            <i class='bx bxs-chevron-down-circle'></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- End of Reminders-->
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
