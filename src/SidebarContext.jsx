@@ -1,14 +1,33 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const SidebarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
-  const [isSidebarClosed, setIsSidebarClosed] = useState(false);
 
+  const [isSidebarClosed, setIsSidebarClosed] = useState(false);
+  
   const toggleSidebar = () => {
     setIsSidebarClosed((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsSidebarClosed(true);
+      } else {
+        setIsSidebarClosed(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Remover o listener quando o componente for desmontado
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   return (
     <SidebarContext.Provider value={{ isSidebarClosed, toggleSidebar }}>
