@@ -1,7 +1,11 @@
+import { useSidebar } from './SidebarContext';
+
 function NavBar() {
+    const { toggleSidebar } = useSidebar();
+
     return (
             <nav>
-                <i className='bx bx-menu'></i>
+                <i className='bx bx-menu' onClick={toggleSidebar}></i>
                 <form action="#">
                     <div className="form-input">
                         <input type="search" placeholder="Pesquise sua localização"/>

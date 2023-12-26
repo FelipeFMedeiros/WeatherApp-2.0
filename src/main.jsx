@@ -6,34 +6,33 @@ import Header from "./Header.jsx";
 import Insight from "./Insight.jsx";
 import Orders from "./Orders.jsx";
 import Reminders from "./Reminders.jsx";
+import { SidebarProvider } from "./SidebarContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <SideBar />
+    <SidebarProvider>
+      <SideBar />
 
-    <div className="content">
-      <NavBar />
+      <div className="content">
+        <NavBar />
 
-      <main>
-        <Header />
+        <main>
+          <Header />
 
-        <ul className="insights">
-          <Insight name="Temperatura" classe="bxs-thermometer" />
-          <Insight name="Sensação Térmica" classe="bxs-thermometer" />
-          <Insight name="Umidade do ar" classe="bx-droplet" />
-          <Insight name="Velocidade do vento" classe="bx-wind" />
-        </ul>
+          <ul className="insights">
+            <Insight name="Temperatura" classe="bxs-thermometer" />
+            <Insight name="Sensação Térmica" classe="bxs-thermometer" />
+            <Insight name="Umidade do ar" classe="bx-droplet" />
+            <Insight name="Velocidade do vento" classe="bx-wind" />
+          </ul>
 
-        <div className="bottom-data">
-          <Orders/>
+          <div className="bottom-data">
+            <Orders />
 
-          <Reminders/>
-
-        </div>
-
-
-
-      </main>
-    </div>
+            <Reminders />
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
   </React.StrictMode>
 );
