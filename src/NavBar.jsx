@@ -1,7 +1,7 @@
-import { useSidebar } from './SidebarContext';
+import { UseSidebar } from './UseSideBar';
 
 function NavBar() {
-    const { toggleSidebar } = useSidebar();
+    const { toggleSidebar } = UseSidebar();
 
     return (
             <nav>

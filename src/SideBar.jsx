@@ -1,8 +1,8 @@
-import SideMenu from "./SideMenu"
-import { useSidebar } from './SidebarContext';
+import SideMenu from "./SideMenu";
+import { UseSidebar } from './UseSideBar';
 
 function SideBar() {
-  const { isSidebarClosed } = useSidebar();
+  const { isSidebarClosed } = UseSidebar();
 
   return (
     <div className={`sidebar ${isSidebarClosed ? 'close' : ''}`}>
@@ -13,9 +13,8 @@ function SideBar() {
       </a>
 
       <SideMenu/>
-
     </div>
-  )
+  );
 }
 
-export default SideBar
+export default SideBar;
