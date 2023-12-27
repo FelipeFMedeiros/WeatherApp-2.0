@@ -18,7 +18,7 @@ export const SidebarProvider = ({ children }) => {
         } else {
           setIsSidebarClosed(false);
         }
-      }, 100);
+      }, 300);
     };
 
     window.addEventListener("resize", handleResize);
