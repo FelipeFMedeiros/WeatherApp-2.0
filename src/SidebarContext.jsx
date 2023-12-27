@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const SidebarContext = createContext();
@@ -11,7 +11,7 @@ export const SidebarProvider = ({ children }) => {
     setIsSidebarClosed((prev) => !prev);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setIsSidebarClosed(true);
