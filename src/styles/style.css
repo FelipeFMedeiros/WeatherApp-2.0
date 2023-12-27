@@ -446,21 +446,21 @@ body{
     cursor: pointer;
 }
 
-.content main .bottom-data .orders{
+.content main .bottom-data .stats{
     flex-grow: 1;
     flex-basis: 500px;
 }
 
-.content main .bottom-data .reminders{
+.content main .bottom-data .previsions{
     flex-grow: 1;
     flex-basis: 300px;
 }
 
-.content main .bottom-data .reminders .list{
+.content main .bottom-data .previsions .list{
     width: 100%;
 }
 
-.content main .bottom-data .reminders .list li{
+.content main .bottom-data .previsions .list li{
     width: 100%;
     margin-bottom: 16px;
     background: var(--grey);
@@ -471,24 +471,24 @@ body{
     justify-content: space-between;
 }
 
-.content main .bottom-data .reminders .list li .list-title{
+.content main .bottom-data .previsions .list li .list-title{
     display: flex;
     align-items: center;
 }
 
-.content main .bottom-data .reminders .list li .list-title p{
+.content main .bottom-data .previsions .list li .list-title p{
     margin-left: 6px;
 }
 
-.content main .bottom-data .reminders .list li .bx{
+.content main .bottom-data .previsions .list li .bx{
   cursor: pointer;  
 }
 
-.content main .bottom-data .reminders .list li.weather-prevision{
+.content main .bottom-data .previsions .list li.weather-prevision{
     border-left: 10px solid var(--primary);
 }
 
-.content main .bottom-data .reminders .list li:last-child{
+.content main .bottom-data .previsions .list li:last-child{
    margin-bottom: 0;
 }
 
@@ -539,12 +539,17 @@ body{
         min-width: 340px;
     }
 
-    .content main .bottom-data .orders table{
+    .content main .bottom-data .stats table{
         min-width: 340px;
     }
 
-    .content main .bottom-data .reminders .list{
+    .content main .bottom-data .previsions .list{
         min-width: 340px;
+    }
+    .content main .header .data-container{
+        height: calc(36px + 100%);
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
 }

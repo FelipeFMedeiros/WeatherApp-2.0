@@ -1,6 +1,6 @@
-function Orders() {
+function Stats() {
   return (
-    <div className="orders">
+    <div className="stats">
       <div className="header">
         <i className="bx bx-sun"></i>
         <h3>Céu limpo</h3>
@@ -16,4 +16,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Stats;

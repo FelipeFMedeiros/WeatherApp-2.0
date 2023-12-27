@@ -5,8 +5,8 @@ import SideBar from "./SideBar.jsx";
 import NavBar from "./NavBar.jsx";
 import Header from "./Header.jsx";
 import Insight from "./Insight.jsx";
-import Orders from "./Orders.jsx";
-import Reminders from "./Reminders.jsx";
+import Stats from "./Stats.jsx";
+import Previsions from "./Previsions.jsx";
 import { SidebarProvider } from "./SidebarContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -29,9 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </ul>
 
             <div className="bottom-data">
-              <Orders />
+              <Stats />
 
-              <Reminders />
+              <Previsions />
             </div>
           </main>
         </div>
