@@ -13,18 +13,20 @@ export const SidebarProvider = ({ children }) => {
   useLayoutEffect(() => {
     const handleResize = () => {
       setTimeout(() => {
-        if (window.innerWidth < 768) {
-          setIsSidebarClosed(true);
-        } else {
-          setIsSidebarClosed(false);
-        }
-      }, 300);
+        requestAnimationFrame(() => {
+          if (window.innerWidth < 768) {
+            setIsSidebarClosed(true);
+          } else {
+            setIsSidebarClosed(false);
+          }
+        });
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
     window.addEventListener("orientationchange", handleResize);
-    
+
     // Remover o listener quando o componente for desmontado
     return () => {
       window.removeEventListener("resize", handleResize);
