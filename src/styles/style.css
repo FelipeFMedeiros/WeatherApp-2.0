@@ -502,6 +502,14 @@ body{
         left: 200px;
     }
 
+    .sidebar .logo{
+        font-size: 20px;
+        font-weight: 700;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        z-index: 500;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -551,5 +559,5 @@ body{
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
+    
 }
