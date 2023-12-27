@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const SidebarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
-  const [isSidebarClosed, setIsSidebarClosed] = useState(false);
+  const [isSidebarClosed, setIsSidebarClosed] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarClosed((prev) => !prev);
