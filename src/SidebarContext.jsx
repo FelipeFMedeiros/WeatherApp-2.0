@@ -14,8 +14,10 @@ export const SidebarProvider = ({ children }) => {
   useLayoutEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
+        window.alert("Closing SideBar");
         setIsSidebarClosed(true);
       } else {
+        window.alert("Opening SideBar");
         setIsSidebarClosed(false);
       }
     };
