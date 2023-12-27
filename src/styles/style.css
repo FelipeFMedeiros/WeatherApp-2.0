@@ -544,15 +544,15 @@ body{
     }
 
     .content main .bottom-data .header{
-        min-width: 340px;
+        min-width: 240px;
     }
 
     .content main .bottom-data .stats table{
-        min-width: 340px;
+        min-width: 240px;
     }
 
     .content main .bottom-data .previsions .list{
-        min-width: 340px;
+        min-width: 240px;
     }
     .content main .header .data-container{
         height: calc(36px + 100%);
