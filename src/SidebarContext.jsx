@@ -16,16 +16,13 @@ export const SidebarProvider = ({ children }) => {
         requestAnimationFrame(() => {
           if (window.innerWidth < 768) {
             setIsSidebarClosed(true);
-            window.addEventListener("load", handleResize);
-            window.addEventListener("resize", handleResize);
-            window.addEventListener("orientationchange", handleResize);
           } else {
             setIsSidebarClosed(false);
           }
         });
       }, 100);
     };
-
+    handleResize();
     window.addEventListener("load", handleResize);
     window.addEventListener("resize", handleResize);
     window.addEventListener("orientationchange", handleResize);
