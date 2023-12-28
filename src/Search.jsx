@@ -8,6 +8,9 @@ const Search = () => {
     ".content nav form .form-input button .bx"
   );
   const searchBtn = document.querySelector(".search-btn");
+  const notify = document.querySelector(".notif");
+  const theme = document.querySelector(".theme-toggle");
+  const searchContainer = document.querySelector(".search")
 
   useEffect(() => {
     console.log(searchTerm);
@@ -30,14 +33,35 @@ const Search = () => {
 
   const handleSearchClick = (e) => {
     e.preventDefault();
+    if (searchBtnIcon.classList.contains("bx-search") && searchTerm.trim() !== "") {
+        window.alert("Vai pesquisar");
+    }
 
     if (window.innerWidth < 576) {
+      searchBtn.style.animation = "";
+      
       searchForm.classList.toggle("show");
       if (searchForm.classList.contains("show")) {
         searchBtnIcon.classList.replace("bx-search", "bx-x");
+        notify.style.animation = "slideOutRight 1.5s forwards";
+        theme.style.animation = "slideOutRight 1.5s forwards";
+        setTimeout(() => {
+          notify.style.display = "none";
+          theme.style.display = "none";
+          searchBtn.style.display = "block";
+          searchContainer.style.display = "block";
+        }, 500);
       } else {
         searchBtnIcon.classList.replace("bx-x", "bx-search");
         searchBtn.style.background = "";
+
+        notify.style.display = "";
+        theme.style.display = "";
+        searchBtn.style.display = "";
+        searchContainer.style.display = "";
+        notify.style.animation = "slideOutLeft 1.5s forwards";
+        theme.style.animation = "slideOutLeft 1.5s forwards";
+        searchBtn.style.animation = "slideOutLeft 1.5s forwards";
       }
     }
 
@@ -52,6 +76,7 @@ const Search = () => {
   return (
     <div className="form-input">
       <input
+        className="search"
         type="search"
         placeholder="Pesquise sua localização"
         value={searchTerm}

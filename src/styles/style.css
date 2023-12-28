@@ -500,16 +500,18 @@ body{
     }
 
     .content nav form.show .form-input input{
-        display: block;
+        animation: revealFromLeft 1s forwards;
         width: 100%;
     }
 
     .content nav form.show .form-input button{
+        animation: revealFromLeft 1s forwards;
         width: 36px;
         height: 100%;
         color: var(--light);
         background: var(--danger);
         border-radius: 0 36px 36px 0;
+        display: none;
     }
 
     .content main .insights {
@@ -641,4 +643,31 @@ body{
   
   .input:checked + .slider:before {
     transform: translateX(30px);
+  }
+
+  @keyframes slideOutRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(200px);
+    }
+  }
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(200px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes revealFromLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
