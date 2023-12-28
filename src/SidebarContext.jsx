@@ -16,6 +16,9 @@ export const SidebarProvider = ({ children }) => {
         requestAnimationFrame(() => {
           if (window.innerWidth < 768) {
             setIsSidebarClosed(true);
+            window.addEventListener("load", handleResize);
+            window.addEventListener("resize", handleResize);
+            window.addEventListener("orientationchange", handleResize);
           } else {
             setIsSidebarClosed(false);
           }
@@ -23,14 +26,14 @@ export const SidebarProvider = ({ children }) => {
       }, 100);
     };
 
-    window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
+    window.addEventListener("resize", handleResize);
     window.addEventListener("orientationchange", handleResize);
 
     // Remover o listener quando o componente for desmontado
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("load", handleResize);
+      window.removeEventListener("resize", handleResize);
       window.addEventListener("orientationchange", handleResize);
     };
   }, []);
