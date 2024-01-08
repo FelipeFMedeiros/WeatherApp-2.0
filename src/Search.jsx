@@ -1,91 +1,102 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const searchForm = document.querySelector(".content nav form");
-  const searchBtnIcon = document.querySelector(
-    ".content nav form .form-input button .bx"
-  );
-  const searchBtn = document.querySelector(".search-btn");
-  const notify = document.querySelector(".notif");
-  const theme = document.querySelector(".theme-toggle");
-  const searchContainer = document.querySelector(".search")
+  const searchInputRef = useRef(null);
+  const searchButtonRef = useRef(null);
+  const searchIconRef = useRef(null);
+  const notifyRef = useRef(null);
+  const themeRef = useRef(null);
 
   useEffect(() => {
-    console.log(searchTerm);
+    //console.log(searchTerm);
   }, [searchTerm]);
 
+  // Detecta as mudanças no input de pesquisa
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
 
     if (window.innerWidth < 576) {
       if (inputValue != "") {
-        searchBtn.style.background = "var(--primary)";
-        searchBtnIcon.classList.replace("bx-x", "bx-search");
+        searchButtonRef.style.background = "var(--primary)";
+        searchIconRef.current.classList.replace("bx-x", "bx-search");
       } else {
-        searchBtn.style.background = "var(--danger)";
-        searchBtnIcon.classList.replace("bx-search", "bx-x");
+        searchButtonRef.style.background = "var(--danger)";
+        searchIconRef.current.classList.replace("bx-search", "bx-x");
       }
     }
   };
 
+  // Detecta o clique no botão de pesquisa
   const handleSearchClick = (e) => {
     e.preventDefault();
-    if (searchBtnIcon.classList.contains("bx-search") && searchTerm.trim() !== "") {
-        window.alert("Vai pesquisar");
+    if (
+      searchIconRef.current.classList.contains("bx-search") &&
+      searchTerm.trim() !== ""
+    ) {
+      window.alert("Pesquisando: " + searchTerm);
     }
 
     if (window.innerWidth < 576) {
-      searchBtn.style.animation = "";
-      
-      searchForm.classList.toggle("show");
-      if (searchForm.classList.contains("show")) {
-        searchBtnIcon.classList.replace("bx-search", "bx-x");
-        notify.style.animation = "slideOutRight 1.5s forwards";
-        theme.style.animation = "slideOutRight 1.5s forwards";
+      if (searchButtonRef.current) {
+        searchButtonRef.current.style.animation = "";
+      }
+      if (searchInputRef.current) {
+        searchInputRef.current.classList.toggle("show");
+      }
+
+      if (searchInputRef.current.classList.contains("show")) {
+        searchIconRef.current.classList.replace("bx-search", "bx-x");
+        notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
+        themeRef.current.style.animation = "slideOutRight 1.5s forwards";
         setTimeout(() => {
-          notify.style.display = "none";
-          theme.style.display = "none";
-          searchBtn.style.display = "block";
-          searchContainer.style.display = "block";
+          notifyRef.current.style.display = "none";
+          themeRef.current.style.display = "none";
+          searchButtonRef.current.style.display = "block";
+          searchInputRef.current.style.display = "block";
         }, 500);
       } else {
-        searchBtnIcon.classList.replace("bx-x", "bx-search");
-        searchBtn.style.background = "";
+        searchIconRef.current.classList.replace("bx-x", "bx-search");
+        searchButtonRef.current.style.background = "";
 
-        notify.style.display = "";
-        theme.style.display = "";
-        searchBtn.style.display = "";
-        searchContainer.style.display = "";
-        notify.style.animation = "slideOutLeft 1.5s forwards";
-        theme.style.animation = "slideOutLeft 1.5s forwards";
-        searchBtn.style.animation = "slideOutLeft 1.5s forwards";
+        notifyRef.current.style.display = "";
+        themeRef.current.style.display = "";
+        searchButtonRef.current.style.display = "";
+        searchInputRef.current.style.display = "";
+        notifyRef.current.style.animation = "slideOutLeft 1.5s forwards";
+        themeRef.current.style.animation = "slideOutLeft 1.5s forwards";
+        searchButtonRef.current.style.animation = "slideOutLeft 1.5s forwards";
       }
     }
 
-    if (searchTerm.trim() !== "") {
+    /*if (searchTerm.trim() !== "") {
       console.log("Termo de pesquisa:", searchTerm);
-      searchBtnIcon.classList.replace("bx-x", "bx-search");
-      searchBtn.style.background = "";
-    }
+      searchIconRef.current.classList.replace("bx-x", "bx-search");
+      searchButtonRef.style.background = "";
+    }*/
+
     setSearchTerm("");
   };
 
   return (
-    <div className="form-input">
+    <form>
       <input
         className="search"
         type="search"
         placeholder="Pesquise sua localização"
         value={searchTerm}
         onChange={handleInputChange}
+        ref={searchInputRef}
       />
-      <button className="search-btn" type="submit" onClick={handleSearchClick}>
-        <i className="bx bx-search"></i>
+      <button
+        className="search-btn"
+        type="submit"
+        onClick={handleSearchClick}
+        ref={searchButtonRef}>
+        <i className="bx bx-search" ref={searchIconRef}></i>
       </button>
-    </div>
+    </form>
   );
 };
 

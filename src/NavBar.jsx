@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { UseSidebar } from "./UseSideBar";
 import { useTheme } from "./ThemeProvider";
 import Search from "./Search";
@@ -6,15 +7,16 @@ function NavBar() {
   const { toggleSidebar } = UseSidebar();
   const { isDarkMode, toggleTheme } = useTheme();
 
+  const notifyRef = useRef(null);
+  const themeRef = useRef(null);
+
   return (
     <nav>
       <i className="bx bx-menu" onClick={toggleSidebar}></i>
-      
-        <form>
-          <Search />
-        </form>
-      
-      <label htmlFor="theme-toggle" className="switch theme-toggle">
+
+      <Search />
+
+      <label htmlFor="theme-toggle" className="switch theme-toggle" ref={themeRef}>
         <span className="sun">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g fill="#ffd43b">
@@ -41,7 +43,7 @@ function NavBar() {
         />
         <span className="slider"></span>
       </label>
-      <a href="#" className="notif">
+      <a href="#" className="notif" ref={notifyRef}>
         <i className="bx bx-bell"></i>
         <span className="count">12</span>
       </a>

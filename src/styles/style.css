@@ -220,13 +220,13 @@ body{
     margin-right: auto;
 }
 
-.content nav form .form-input{
+.content nav form{
     display: flex;
     align-items: center;
     height: 50px;
 }
 
-.content nav form .form-input input{
+.content nav form input{
     flex-grow: 1;
     padding: 0 16px;
     height: 100%;
@@ -239,7 +239,7 @@ body{
     font-size: 16px;
 }
 
-.content nav form .form-input button{
+.content nav form button{
     width: 80px;
     height: 100%;
     display: flex;
@@ -487,11 +487,11 @@ body{
 }
 
 @media screen and (max-width: 576px) {
-    .content nav form .form-input input{
+    .content nav form input{
         display: none;
     }
 
-    .content nav form .form-input button{
+    .content nav form button{
         width: auto;
         height: auto;
         background: transparent;
@@ -499,12 +499,12 @@ body{
         border-radius: none;
     }
 
-    .content nav form.show .form-input input{
+    .content nav form.show input{
         animation: revealFromLeft 1s forwards;
         width: 100%;
     }
 
-    .content nav form.show .form-input button{
+    .content nav form.show button{
         animation: revealFromLeft 1s forwards;
         width: 36px;
         height: 100%;
