@@ -1,16 +1,71 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
 
-const Search = () => {
+const Search = ({ notifyRef, themeRef }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
   const searchButtonRef = useRef(null);
   const searchIconRef = useRef(null);
-  const notifyRef = useRef(null);
-  const themeRef = useRef(null);
 
   useEffect(() => {
-    //console.log(searchTerm);
-  }, [searchTerm]);
+    const handleResize = () => {
+      notifyRef.current.style.animation = "none";
+      themeRef.current.style.animation = "none";
+      searchButtonRef.current.style.animation = "none";
+      //console.log(searchTerm);
+      if (window.innerWidth > 576) {
+        searchButtonRef.current.style.background = "var(--primary)";
+        searchIconRef.current.style.color = "var(--light)";
+        searchIconRef.current.classList.replace("bx-x", "bx-search");
+
+        notifyRef.current.style.display = "";
+        themeRef.current.style.display = "";
+        searchButtonRef.current.style.display = "";
+        searchInputRef.current.style.display = "";
+        notifyRef.current.style.animation = "slideOutLeft 1.5s forwards";
+        themeRef.current.style.animation = "slideOutLeft 1.5s forwards";
+        searchButtonRef.current.style.animation = "slideOutLeft 1.5s forwards";
+      }
+      if (window.innerWidth < 576) {
+        if (
+          searchTerm.trim() == "" &&
+          searchInputRef.current.classList.contains("show") == false
+        ) {
+          searchButtonRef.current.style.background = "transparent";
+          searchIconRef.current.style.color = "var(--dark)";
+        }
+
+        if (searchTerm.trim() != "") {
+          searchInputRef.current.classList.toggle("show");
+
+          searchButtonRef.current.style.background = "var(--primary)";
+          searchIconRef.current.style.color = "var(--light)";
+          searchIconRef.current.classList.replace("bx-x", "bx-search");
+
+          notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
+          themeRef.current.style.animation = "slideOutRight 1.5s forwards";
+          setTimeout(() => {
+            notifyRef.current.style.display = "none";
+            themeRef.current.style.display = "none";
+            searchButtonRef.current.style.display = "block";
+            searchInputRef.current.style.display = "block";
+          }, 500);
+        }
+      }
+    };
+
+    handleResize();
+    window.addEventListener("load", handleResize);
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+
+    // Remover o listener quando o componente for desmontado
+    return () => {
+      window.removeEventListener("load", handleResize);
+      window.removeEventListener("resize", handleResize);
+      window.addEventListener("orientationchange", handleResize);
+    };
+  }, [notifyRef, searchTerm, themeRef]);
 
   // Detecta as mudanças no input de pesquisa
   const handleInputChange = (e) => {
@@ -19,10 +74,10 @@ const Search = () => {
 
     if (window.innerWidth < 576) {
       if (inputValue != "") {
-        searchButtonRef.style.background = "var(--primary)";
+        searchButtonRef.current.style.background = "var(--primary)";
         searchIconRef.current.classList.replace("bx-x", "bx-search");
       } else {
-        searchButtonRef.style.background = "var(--danger)";
+        searchButtonRef.current.style.background = "var(--danger)";
         searchIconRef.current.classList.replace("bx-search", "bx-x");
       }
     }
@@ -47,7 +102,16 @@ const Search = () => {
       }
 
       if (searchInputRef.current.classList.contains("show")) {
-        searchIconRef.current.classList.replace("bx-search", "bx-x");
+        if (searchTerm.trim() == "") {
+          searchButtonRef.current.style.background = "var(--danger)";
+          searchIconRef.current.style.color = "var(--light)";
+          searchIconRef.current.classList.replace("bx-search", "bx-x");
+        } else {
+          searchButtonRef.current.style.background = "var(--primary)";
+          searchIconRef.current.style.color = "var(--light)";
+          searchIconRef.current.classList.replace("bx-x", "bx-search");
+        }
+
         notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
         themeRef.current.style.animation = "slideOutRight 1.5s forwards";
         setTimeout(() => {
@@ -58,7 +122,8 @@ const Search = () => {
         }, 500);
       } else {
         searchIconRef.current.classList.replace("bx-x", "bx-search");
-        searchButtonRef.current.style.background = "";
+        searchButtonRef.current.style.background = "transparent";
+        searchIconRef.current.style.color = "var(--dark)";
 
         notifyRef.current.style.display = "";
         themeRef.current.style.display = "";

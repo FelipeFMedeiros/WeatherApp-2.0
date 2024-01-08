@@ -14,7 +14,7 @@ function NavBar() {
     <nav>
       <i className="bx bx-menu" onClick={toggleSidebar}></i>
 
-      <Search />
+      <Search notifyRef={notifyRef} themeRef={themeRef} />
 
       <label htmlFor="theme-toggle" className="switch theme-toggle" ref={themeRef}>
         <span className="sun">

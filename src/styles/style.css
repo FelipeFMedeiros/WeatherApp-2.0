@@ -487,11 +487,11 @@ body{
 }
 
 @media screen and (max-width: 576px) {
-    .content nav form input{
+    form input{
         display: none;
     }
 
-    .content nav form button{
+    form button{
         width: auto;
         height: auto;
         background: transparent;
@@ -499,12 +499,12 @@ body{
         border-radius: none;
     }
 
-    .content nav form.show input{
+    form.show input{
         animation: revealFromLeft 1s forwards;
         width: 100%;
     }
 
-    .content nav form.show button{
+    form.show button{
         animation: revealFromLeft 1s forwards;
         width: 36px;
         height: 100%;
