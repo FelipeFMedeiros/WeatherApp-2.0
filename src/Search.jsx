@@ -3,11 +3,25 @@ import { useEffect, useState, useRef } from "react";
 import { indexJS } from '../src/scripts/index.js';
 
 const Search = ({ notifyRef, themeRef }) => {
+
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
   const searchButtonRef = useRef(null);
   const searchIconRef = useRef(null);
   const searchTermRef = useRef("");
+
+  useEffect(() => {
+    const LoadPageSearch = () => {
+      indexJS("Rio de Janeiro");
+    };
+  
+    window.addEventListener("load", LoadPageSearch);
+  
+    // Limpa o event listener quando o componente é desmontado
+    return () => {
+      window.removeEventListener("load", LoadPageSearch);
+    };
+  }, []);
 
   useEffect(() => {}), [searchTerm];
 

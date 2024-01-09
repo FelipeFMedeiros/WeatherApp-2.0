@@ -2,9 +2,9 @@ function Header() {
     return (
         <div className="header">
         <div className="left">
-            <h1>País / City</h1>
+            <h1 className='tittle-location-name'>País / City</h1>
             <ul className="breadcrumb">
-                <li><a href="#">
+                <li><a href="#" className="subtittle-formated-address">
                         Nome do local encontrado
                     </a></li>
             </ul>
