@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
+import { indexJS } from '../src/scripts/index.js';
 
 const Search = ({ notifyRef, themeRef }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,7 +110,8 @@ const Search = ({ notifyRef, themeRef }) => {
       searchIconRef.current.classList.contains("bx-search") &&
       searchTerm.trim() !== ""
     ) {
-      window.alert("Pesquisando: " + searchTerm);
+      //window.alert("Pesquisando: " + searchTerm);
+      indexJS(searchTerm);
     }
 
     if (window.innerWidth < 576) {
