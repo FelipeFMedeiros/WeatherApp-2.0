@@ -6,6 +6,13 @@ Ainda não fiz a parte funcional, estou ajustando o front-end e a responsividade
 
 
 ## Como rodar o projeto?
+
+### Instale as dependências:
+```bash
+npm install
+```
+
+### Crie um servidor local:
 ```bash
 npm run dev
 ```
