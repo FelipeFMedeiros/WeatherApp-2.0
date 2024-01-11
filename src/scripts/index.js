@@ -44,9 +44,6 @@ export const indexJS = (searchTerm) => {
       console.log(`SearchTerm: ${city}:\nLatitude: ${lat} | Longitude: ${lng}`);
 
       // Lógica para o fetch do OpenWeatherMap One Call API
-      console.log(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&units=metric&lang=pt_br&exclude=minutely,hourly,daily&appid=${WEATHER_API_KEY}`
-      );
       fetch(
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&units=metric&lang=pt_br&exclude=minutely,hourly,daily&appid=${WEATHER_API_KEY}`
       )
@@ -68,7 +65,7 @@ export const indexJS = (searchTerm) => {
           let currentFeelsLike = dataWeather.current.feels_like;
           let currentHumidity = dataWeather.current.humidity;
           let currentWind = (dataWeather.current.wind_speed) * 3.6;
-          let currentWeather = dataWeather.current.weather[0].main;
+          //let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
 
           // Escrevendo dados no DOM
