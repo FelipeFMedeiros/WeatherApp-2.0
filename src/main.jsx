@@ -22,10 +22,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Header />
 
             <ul className="insights">
-              <Insight name="Temperatura" classe="bxs-thermometer" />
-              <Insight name="Sensação Térmica" classe="bxs-thermometer" />
-              <Insight name="Umidade do ar" classe="bx-droplet" />
-              <Insight name="Velocidade do vento" classe="bx-wind" />
+              <Insight name="Temperatura" classe="bxs-thermometer" ident="local-temp"/>
+              <Insight name="Sensação Térmica" classe="bxs-thermometer" ident="local-feels-like"/>
+              <Insight name="Umidade do ar" classe="bx-droplet" ident="local-umidity"/>
+              <Insight name="Velocidade do vento" classe="bx-wind" ident="local-wind"/>
             </ul>
 
             <div className="bottom-data">

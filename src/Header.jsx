@@ -11,8 +11,8 @@ function Header() {
         </div>
         <a className="data-container">
             <i className='bx bx-time'></i>
-            <span>19:57</span>|
-            <span>Sábado, 19 de dezembro de 2023</span>
+            <span className="time-container">19:57</span>|
+            <span className="date-container">Sábado, 19 de dezembro de 2023</span>
         </a>
     </div>
     )

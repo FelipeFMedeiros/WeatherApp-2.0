@@ -3,9 +3,9 @@ function Stats() {
     <div className="stats">
       <div className="header">
         <i className="bx bx-sun"></i>
-        <h3>Céu limpo</h3>
+        <h3 className="weather-title">Céu limpo</h3>
       </div>
-      <p>Descrição</p>
+      <p className="weather-description"></p>
       <div
         className="description"
         style={{justifyContent: "center", textAlign: "center"}}
