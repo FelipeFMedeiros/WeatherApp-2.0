@@ -1,3 +1,5 @@
+import { imgJS } from "./img.js";
+
 export const indexJS = (searchTerm) => {
   // Pegando APIs do .env
   const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
@@ -65,7 +67,7 @@ export const indexJS = (searchTerm) => {
           let currentFeelsLike = dataWeather.current.feels_like;
           let currentHumidity = dataWeather.current.humidity;
           let currentWind = (dataWeather.current.wind_speed) * 3.6;
-          //let currentWeather = dataWeather.current.weather[0].main;
+          let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
 
           // Escrevendo dados no DOM
@@ -94,6 +96,9 @@ export const indexJS = (searchTerm) => {
             tempContainerII.style.background = "var(--light-warning)";
             tempContainerII.style.color = "var(--warning)";
           }
+          
+          // IMG do clima
+          imgJS(currentWeather, convertTime(currentHour, currentTimezone).returnTime);
 
         });
     });
