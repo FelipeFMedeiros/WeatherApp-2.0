@@ -10,7 +10,7 @@ function Stats() {
         className="description"
         style={{justifyContent: "center", textAlign: "center"}}
         >
-        <img className="weather-img" src="../src/assets/day/clear.svg" style={{height: 200}} />
+        <img className="weather-img" src="../src/assets/day/clear.svg" alt="weatherimg" style={{height: 200}} />
       </div>
     </div>
   );
