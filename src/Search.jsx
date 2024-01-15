@@ -15,14 +15,13 @@ const Search = ({ notifyRef, themeRef }) => {
       indexJS("Rio de Janeiro");
     };
     
-    window.addEventListener("load", LoadPageSearch);
-    window.addEventListener("loadstart", LoadPageSearch);
+    LoadPageSearch();
+    /*window.addEventListener("load", LoadPageSearch);
   
     // Limpa o event listener quando o componente é desmontado
     return () => {
       window.removeEventListener("load", LoadPageSearch);
-      window.removeEventListener("loadstart", LoadPageSearch);
-    };
+    };*/
   }, []);
 
   useEffect(() => {}), [searchTerm];

@@ -13,6 +13,7 @@ export const imgJS = (currentWeather, currentHour) => {
     timeReference = "day";
   }
 
+  // Colocando imagem no DOM
   if (import.meta.env.MODE === 'production') { // Ambiente de produção
     weatherIMGDOM.src = `/assets/${timeReference}/${currentWeather.toLowerCase()}.svg`;
   } else { // Ambiente local
