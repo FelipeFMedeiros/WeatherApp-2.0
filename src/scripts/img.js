@@ -12,5 +12,11 @@ export const imgJS = (currentWeather, currentHour) => {
   } else {
     timeReference = "day";
   }
-  weatherIMGDOM.src = `../src/assets/${timeReference}/${currentWeather.toLowerCase()}.svg`;
+
+  if (import.meta.env.MODE === 'production') { // Ambiente de produção
+    weatherIMGDOM.src = `/assets/${timeReference}/${currentWeather.toLowerCase()}.svg`;
+  } else { // Ambiente local
+    weatherIMGDOM.src = `/public/assets/${timeReference}/${currentWeather.toLowerCase()}.svg`;
+  }
+
 };
