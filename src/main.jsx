@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "./ThemeProvider";
 import SideBar from "./SideBar.jsx";
@@ -9,33 +9,67 @@ import Stats from "./Stats.jsx";
 import Previsions from "./Previsions.jsx";
 import { SidebarProvider } from "./SidebarContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <SidebarProvider>
-        <SideBar />
+function MainComponent() {
+  const [isLoading, setIsLoading] = useState(true);
 
-        <div className="content">
-          <NavBar />
+  useEffect(() => {
 
-          <main>
-            <Header />
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+  }, []);
+    
+  if (isLoading) {
+    console.log("Loading...");
+  }
 
-            <ul className="insights">
-              <Insight name="Temperatura" classe="bxs-thermometer" ident="local-temp"/>
-              <Insight name="Sensação Térmica" classe="bxs-thermometer" ident="local-feels-like"/>
-              <Insight name="Umidade do ar" classe="bx-droplet" ident="local-umidity"/>
-              <Insight name="Velocidade do vento" classe="bx-wind" ident="local-wind"/>
-            </ul>
+  return (
+    <React.StrictMode>
+      <ThemeProvider>
+        <SidebarProvider>
+          <SideBar />
 
-            <div className="bottom-data">
-              <Stats />
+          <div className="content">
+            <NavBar />
 
-              <Previsions />
-            </div>
-          </main>
-        </div>
-      </SidebarProvider>
-    </ThemeProvider>
-  </React.StrictMode>
-);
+            <main style={{display: isLoading ? 'none' : 'block'}}>
+              <Header />
+
+              <ul className="insights">
+                <Insight
+                  name="Temperatura"
+                  classe="bxs-thermometer"
+                  ident="local-temp"
+                />
+                <Insight
+                  name="Sensação Térmica"
+                  classe="bxs-thermometer"
+                  ident="local-feels-like"
+                />
+                <Insight
+                  name="Umidade do ar"
+                  classe="bx-droplet"
+                  ident="local-umidity"
+                />
+                <Insight
+                  name="Velocidade do vento"
+                  classe="bx-wind"
+                  ident="local-wind"
+                />
+              </ul>
+
+              <div className="bottom-data">
+                <Stats />
+
+                <Previsions />
+              </div>
+            </main>
+          </div>
+        </SidebarProvider>
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+}
+export default MainComponent;
+
+ReactDOM.createRoot(document.getElementById("root")).render(<MainComponent/>);
