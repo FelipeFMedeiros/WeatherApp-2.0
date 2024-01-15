@@ -1,3 +1,4 @@
+const start = performance.now();
 import { imgJS } from "./img.js";
 
 export const indexJS = (searchTerm) => {
@@ -82,14 +83,14 @@ export const indexJS = (searchTerm) => {
           weatherTitleDOM.innerHTML = currentWeatherDescription.charAt(0).toUpperCase() + currentWeatherDescription.slice(1);
 
           // Lógica para mudar a cor do background do ícone de temperatura
-          if (currentTemp < 27) { // Temperatura atual
+          if (currentTemp <= 26) { // Temperatura atual
             tempContainerI.style.background = "var(--light-primary)";
             tempContainerI.style.color = "var(--primary)";
           } else {
             tempContainerI.style.background = "var(--light-warning)";
             tempContainerI.style.color = "var(--warning)";
           }
-          if (currentFeelsLike < 27) { // Sensação Térmica
+          if (currentFeelsLike <= 26) { // Sensação Térmica
             tempContainerII.style.background = "var(--light-primary)";
             tempContainerII.style.color = "var(--primary)"; 
           } else {
@@ -100,6 +101,9 @@ export const indexJS = (searchTerm) => {
           // IMG do clima
           imgJS(currentWeather, convertTime(currentHour, currentTimezone).returnTime);
 
+          // Tempo de execução
+          const end = performance.now();
+          console.log(`Tempo de execução: ${end - start} ms`);
         });
     });
 

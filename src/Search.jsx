@@ -14,12 +14,14 @@ const Search = ({ notifyRef, themeRef }) => {
     const LoadPageSearch = () => {
       indexJS("Rio de Janeiro");
     };
-  
+    
     window.addEventListener("load", LoadPageSearch);
+    window.addEventListener("loadstart", LoadPageSearch);
   
     // Limpa o event listener quando o componente é desmontado
     return () => {
       window.removeEventListener("load", LoadPageSearch);
+      window.removeEventListener("loadstart", LoadPageSearch);
     };
   }, []);
 

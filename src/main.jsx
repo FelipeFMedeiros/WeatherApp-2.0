@@ -7,18 +7,18 @@ import Header from "./Header.jsx";
 import Insight from "./Insight.jsx";
 import Stats from "./Stats.jsx";
 import Previsions from "./Previsions.jsx";
+import Loading from "./Loading.jsx";
 import { SidebarProvider } from "./SidebarContext";
 
 function MainComponent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }, []);
-    
+
   if (isLoading) {
     console.log("Loading...");
   }
@@ -32,7 +32,20 @@ function MainComponent() {
           <div className="content">
             <NavBar />
 
-            <main style={{display: isLoading ? 'none' : 'block'}}>
+            <div
+              className="loader"
+              style={{
+                display: isLoading ? "flex" : "none",
+                animation: isLoading ? "" : "fadeOut 0.5s forwards",
+              }}>
+                <Loading/>
+            </div>
+
+            <main
+              style={{
+                display: isLoading ? "none" : "block",
+                animation: "fadeIn 1s forwards",
+              }}>
               <Header />
 
               <ul className="insights">
@@ -72,4 +85,4 @@ function MainComponent() {
 }
 export default MainComponent;
 
-ReactDOM.createRoot(document.getElementById("root")).render(<MainComponent/>);
+ReactDOM.createRoot(document.getElementById("root")).render(<MainComponent />);
