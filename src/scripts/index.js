@@ -70,6 +70,7 @@ export const indexJS = (searchTerm) => {
           let currentWind = (dataWeather.current.wind_speed) * 3.6;
           let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
+          let currentWeatherID = dataWeather.current.weather[0].id;
 
           // Escrevendo dados no DOM
           tittleDOM.innerText = getMainAddress(dataLocation.results[0].address_components);
@@ -99,7 +100,7 @@ export const indexJS = (searchTerm) => {
           }
           
           // IMG do clima
-          imgJS(currentWeather, convertTime(currentHour, currentTimezone).returnTime);
+          imgJS(currentWeather, currentWeatherID, convertTime(currentHour, currentTimezone).returnTime);
 
           // Tempo de execução
           const end = performance.now();
