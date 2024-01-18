@@ -16,6 +16,7 @@ export const imgJS = (currentWeather, currentWeatherID, currentHour) => {
     weatherIMGDOM.src = `/assets/${timeReference}/${currentWeather.toLowerCase()}-${currentWeatherID}.svg`;
   } else { // Ambiente local
     weatherIMGDOM.src = `/public/assets/${timeReference}/${currentWeather.toLowerCase()}-${currentWeatherID}.svg`;
+    weatherIMGDOM.src = "/public/assets/night/fog-741.svg";
   }
 
 };

@@ -42,6 +42,7 @@ export const indexJS = (searchTerm) => {
         );
       }
 
+      // Pegando dados da GeoCoding
       let lat = dataLocation.results[0].geometry.location.lat;
       let lng = dataLocation.results[0].geometry.location.lng;
       console.log(`SearchTerm: ${city}:\nLatitude: ${lat} | Longitude: ${lng}`);
@@ -123,7 +124,7 @@ export const indexJS = (searchTerm) => {
     var date = new Date(unixTimestamp * 1000);
     // Converte para a data e hora local do usuário
     var fullDateTime = date.toLocaleString("pt-BR", { timeZone: timezone });
-    console.log(fullDateTime);
+    console.log(fullDateTime + " = " + timezone);
     // Converte para a data e hora local do usuário separadamente
     let returnTime = date.toLocaleString("pt-BR", {
       timeZone: timezone,
