@@ -1,18 +1,18 @@
 # WeatherApp 2.0
 Este é um projeto de clima que estou criando e aprimorando com o tempo.
 <br/>
-Ainda não fiz a parte funcional, estou ajustando o front-end e a responsividade.
+Ainda serão adicionados muitas funções e melhorias na precisão dos resultados.
 - [Clique para ver projeto](https://weatherapp-felipefmedeiros.vercel.app/)
 
 
 ## Como rodar o projeto?
 
-#### Instale as dependências:
+#### 1) Instale as dependências:
 ```bash
 npm install
 ```
 
-#### Crie um servidor local:
+#### 2) Crie um servidor local:
 ```bash
 npm run dev
 ```
@@ -42,9 +42,20 @@ Para rodar esse projeto, você vai precisar criar um arquivo chamado `.env` e ad
 
 `VITE_WEATHER_API_KEY` com a chave da sua API do OpenWeatherMap
 
+Exemplo:
+```js
+VITE_GOOGLE_API_KEY=ExeMpleK3y
+VITE_WEATHER_API_KEY=ExeMpleK3y
+```
+
 # Screenshot
 Aqui virão screenshots do projeto:
 
 ## Autores
 
 - [@FelipeFMedeiros](https://www.github.com/felipefmedeiros)
+
+<br/>
+
+# Ícones
+Os ícones usados neste projeto foram baseados nos ícones presentes no repositório [weather-icons de Bas Milius](https://github.com/basmilius/weather-icons/tree/dev).
