@@ -15,6 +15,11 @@
             <stop offset=".5" stop-color="#86c3db" />
             <stop offset="1" stop-color="#5eafcf" />
         </linearGradient>
+        <linearGradient id="f" x1="78" x2="118" y1="63.4" y2="132.7" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fbbf24" />
+            <stop offset=".5" stop-color="#fbbf24" />
+            <stop offset="1" stop-color="#f59e0b" />
+        </linearGradient>
         <linearGradient id="d" x1="1399.3" x2="1408.7" y1="-1137.3" y2="-1112.7"
             gradientTransform="rotate(-9 8016.182 8229.021)" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#0b65ed" />
@@ -26,11 +31,12 @@
         <linearGradient xlink:href="#c" id="g" x1="11.4" x2="32.8" y1="5.9" y2="43.1" />
         <linearGradient xlink:href="#c" id="h" x1="67.4" x2="88.8" y1="5.9" y2="43.1" />
         <linearGradient xlink:href="#c" id="i" x1="123.4" x2="144.8" y1="5.9" y2="43.1" />
-        <symbol id="k" overflow="visible" viewBox="0 0 172 172">
-            <path fill="url(#c)" stroke="#72b9d5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
-                d="M160.6 107.4a84.8 84.8 0 01-85.4-84.3A83.3 83.3 0 0178 2 84.7 84.7 0 002 85.7 84.8 84.8 0 0087.4 170a85.2 85.2 0 0082.6-63.1 88 88 0 01-9.4.5Z">
+        <symbol id="k" viewBox="0 0 196 196">
+            <circle cx="98" cy="98" r="40" fill="url(#f)" stroke="#f8af18" stroke-miterlimit="10" stroke-width="4" />
+            <path fill="none" stroke="#fbbf24" stroke-linecap="round" stroke-miterlimit="10" stroke-width="12"
+                d="M98 31.4V6m0 184v-25.4M145.1 51l18-17.9M33 163l18-17.9M51 51 33 33m130.1 130.1-18-18M6 98h25.4M190 98h-25.4">
                 <animateTransform additive="sum" attributeName="transform" dur="6s" repeatCount="indefinite"
-                    type="rotate" values="-15 86 86; 9 86 86; -15 86 86" />
+                    type="rotate" values="0 98 98; 45 98 98" />
             </path>
         </symbol>
         <symbol id="m" viewBox="0 0 200.3 126.1">
@@ -109,7 +115,7 @@
                 <animate id="y2" attributeName="opacity" begin="1.34s; y2.end+1s" dur="1s" keyTimes="0; .25; 1"
                     values="0; 1; 0" />
             </path>
-            <path fill="url(#f)" stroke="#0a5ad4" stroke-miterlimit="10"
+            <path fill="url(#e)" stroke="#0a5ad4" stroke-miterlimit="10"
                 d="M134.1 38.5a8 8 0 01-8-8v-12a8 8 0 0116 0v12a8 8 0 01-8 8Z" opacity="0">
                 <animateTransform id="x3" additive="sum" attributeName="transform" begin=".67s; x3.end+1s" dur="1s"
                     keyTimes="0; .25; 1" type="translate" values="0 -32; 0 -32; 0 120;" />

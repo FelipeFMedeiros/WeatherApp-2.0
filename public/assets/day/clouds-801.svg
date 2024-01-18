@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
     <defs>
-        <symbol id="e" overflow="visible" viewBox="0 0 172 172">
-            <path fill="url(#c)" stroke="#72b9d5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
-                d="M160.6 107.4a84.8 84.8 0 01-85.4-84.3A83.3 83.3 0 0178 2 84.7 84.7 0 002 85.7 84.8 84.8 0 0087.4 170a85.2 85.2 0 0082.6-63.1 88 88 0 01-9.4.5Z">
+        <symbol id="e" viewBox="0 0 196 196">
+            <circle cx="98" cy="98" r="40" fill="url(#c)" stroke="#f8af18" stroke-miterlimit="10" stroke-width="4" />
+            <path fill="none" stroke="#fbbf24" stroke-linecap="round" stroke-miterlimit="10" stroke-width="12"
+                d="M98 31.4V6m0 184v-25.4M145.1 51l18-17.9M33 163l18-17.9M51 51 33 33m130.1 130.1-18-18M6 98h25.4M190 98h-25.4">
                 <animateTransform additive="sum" attributeName="transform" dur="6s" repeatCount="indefinite"
-                    type="rotate" values="-15 86 86; 9 86 86; -15 86 86" />
+                    type="rotate" values="0 98 98; 45 98 98" />
             </path>
         </symbol>
         <symbol id="g" viewBox="0 0 200.3 126.1">
@@ -25,9 +26,9 @@
                     type="translate" values="-18 0; 18 0; -18 0" />
             </use>
         </symbol>
-        <symbol id="d" overflow="visible" viewBox="0 0 398.8 246">
-            <use xlink:href="#e" width="172" height="172" />
-            <use xlink:href="#f" width="398" height="222" transform="translate(.84 24)" />
+        <symbol id="d" overflow="visible" viewBox="0 0 410.8 258">
+            <use xlink:href="#e" width="196" height="196" />
+            <use xlink:href="#f" width="398" height="222" transform="translate(12.84 36)" />
         </symbol>
         <linearGradient id="a" x1="52.7" x2="133.4" y1="9.6" y2="149.3" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#9ca3af" />
@@ -39,11 +40,11 @@
             <stop offset=".5" stop-color="#6b7280" />
             <stop offset="1" stop-color="#4b5563" />
         </linearGradient>
-        <linearGradient id="c" x1="34.7" x2="119.2" y1="18.6" y2="165" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#86c3db" />
-            <stop offset=".5" stop-color="#86c3db" />
-            <stop offset="1" stop-color="#5eafcf" />
+        <linearGradient id="c" x1="78" x2="118" y1="63.4" y2="132.7" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fbbf24" />
+            <stop offset=".5" stop-color="#fbbf24" />
+            <stop offset="1" stop-color="#f59e0b" />
         </linearGradient>
     </defs>
-    <use xlink:href="#d" width="398.8" height="246" transform="translate(68 121)" />
+    <use xlink:href="#d" width="410.8" height="258" transform="translate(56 109)" />
 </svg>
