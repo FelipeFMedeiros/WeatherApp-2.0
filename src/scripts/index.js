@@ -42,6 +42,7 @@ export const indexJS = (searchTerm) => {
         );
       }
 
+      // Pegando dados da GeoCoding
       let lat = dataLocation.results[0].geometry.location.lat;
       let lng = dataLocation.results[0].geometry.location.lng;
       console.log(`SearchTerm: ${city}:\nLatitude: ${lat} | Longitude: ${lng}`);
@@ -70,6 +71,7 @@ export const indexJS = (searchTerm) => {
           let currentWind = (dataWeather.current.wind_speed) * 3.6;
           let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
+          let currentWeatherID = dataWeather.current.weather[0].id;
 
           // Escrevendo dados no DOM
           tittleDOM.innerText = getMainAddress(dataLocation.results[0].address_components);
@@ -99,7 +101,7 @@ export const indexJS = (searchTerm) => {
           }
           
           // IMG do clima
-          imgJS(currentWeather, convertTime(currentHour, currentTimezone).returnTime);
+          imgJS(currentWeather, currentWeatherID, convertTime(currentHour, currentTimezone).returnTime);
 
           // Tempo de execução
           const end = performance.now();
@@ -122,7 +124,7 @@ export const indexJS = (searchTerm) => {
     var date = new Date(unixTimestamp * 1000);
     // Converte para a data e hora local do usuário
     var fullDateTime = date.toLocaleString("pt-BR", { timeZone: timezone });
-    console.log(fullDateTime);
+    console.log(fullDateTime + " = " + timezone);
     // Converte para a data e hora local do usuário separadamente
     let returnTime = date.toLocaleString("pt-BR", {
       timeZone: timezone,
