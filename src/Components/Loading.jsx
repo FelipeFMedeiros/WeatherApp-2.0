@@ -1,4 +1,4 @@
- import "../src/styles/loading.css";
+ import "../styles/loading.css";
 
 function Loading() {
     return (

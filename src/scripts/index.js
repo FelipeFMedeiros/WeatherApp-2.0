@@ -12,6 +12,8 @@ export const indexJS = (searchTerm) => {
   const subTittleDOM = document.querySelector(".subtittle-formated-address");
   const timeDOM = document.querySelector(".time-container");
   const dateDOM = document.querySelector(".date-container");
+  const sunriseDOM = document.querySelector(".sunrise-text")
+  const sunsetDOM = document.querySelector(".sunset-text");
 
   const tempContainerI = document.querySelector(".content main .insights div:nth-child(1) li .bx");
   const tempContainerII = document.querySelector(".content main .insights div:nth-child(2) li .bx");
@@ -72,6 +74,8 @@ export const indexJS = (searchTerm) => {
           let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
           let currentWeatherID = dataWeather.current.weather[0].id;
+          let sunrise = dataWeather.current.sunrise;
+          let sunset = dataWeather.current.sunset;
 
           // Escrevendo dados no DOM
           tittleDOM.innerText = getMainAddress(dataLocation.results[0].address_components);
@@ -83,6 +87,8 @@ export const indexJS = (searchTerm) => {
           umidityDOM.innerHTML = `${currentHumidity}%`;
           windDOM.innerHTML = `${Math.round(currentWind)}km/h`;
           weatherTitleDOM.innerHTML = currentWeatherDescription.charAt(0).toUpperCase() + currentWeatherDescription.slice(1);
+          sunriseDOM.innerHTML = convertTime(sunrise, currentTimezone).returnTime;
+          sunsetDOM.innerHTML = convertTime(sunset, currentTimezone).returnTime;
 
           // Lógica para mudar a cor do background do ícone de temperatura
           if (currentTemp <= 26) { // Temperatura atual
@@ -101,8 +107,10 @@ export const indexJS = (searchTerm) => {
           }
           
           // IMG do clima
-          imgJS(currentWeather, currentWeatherID, convertTime(currentHour, currentTimezone).returnTime);
+          imgJS(currentWeather, currentWeatherID, convertTime(sunrise, currentTimezone).returnTime, convertTime(sunset, currentTimezone).returnTime, convertTime(currentHour, currentTimezone).returnTime);
 
+          console.log(`${currentWeather} (${currentWeatherID}): ${currentWeatherDescription}`);
+          console.table(convertTime(currentHour, currentTimezone));
           // Tempo de execução
           const end = performance.now();
           console.log(`Tempo de execução: ${end - start} ms`);
@@ -124,7 +132,6 @@ export const indexJS = (searchTerm) => {
     var date = new Date(unixTimestamp * 1000);
     // Converte para a data e hora local do usuário
     var fullDateTime = date.toLocaleString("pt-BR", { timeZone: timezone });
-    console.log(fullDateTime + " = " + timezone);
     // Converte para a data e hora local do usuário separadamente
     let returnTime = date.toLocaleString("pt-BR", {
       timeZone: timezone,
@@ -135,6 +142,6 @@ export const indexJS = (searchTerm) => {
       dateStyle: "full",
     });
 
-    return { fullDateTime, returnTime, returnDate };
+    return { fullDateTime, returnTime, returnDate, timezone };
   }
 };

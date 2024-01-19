@@ -304,6 +304,7 @@ body {
 }
 
 .content main .header .left .breadcrumb li {
+  font-size: 19px;
   color: var(--dark);
 }
 
@@ -415,10 +416,6 @@ body {
   font-weight: 600;
 }
 
-.content main .bottom-data .header .bx {
-  cursor: pointer;
-}
-
 .content main .bottom-data .stats {
   flex-grow: 1;
   flex-basis: 500px;
@@ -435,9 +432,9 @@ body {
 
 .content main .bottom-data .previsions .list li {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   background: var(--grey);
-  padding: 14px 10px;
+  padding: 20px 10px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -450,11 +447,13 @@ body {
 }
 
 .content main .bottom-data .previsions .list li .list-title p {
+  font-size: 18px;
   margin-left: 6px;
 }
 
 .content main .bottom-data .previsions .list li .bx {
   cursor: pointer;
+  font-size: 28px;
 }
 
 .content main .bottom-data .previsions .list li.weather-prevision {
@@ -463,6 +462,26 @@ body {
 
 .content main .bottom-data .previsions .list li:last-child {
   margin-bottom: 0;
+}
+
+.sun-status {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.sun-status .sunrise, .sun-status .sunset {
+  flex: 1 0 200px; /* O valor 200px pode ser ajustado de acordo com suas necessidades */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sunset-text, .sunrise-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark);
 }
 
 @media screen and (max-width: 768px) {

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
-import { indexJS } from '../src/scripts/index.js';
+import { indexJS } from '../scripts/index.js';
 
 const Search = ({ notifyRef, themeRef }) => {
 
@@ -14,14 +14,7 @@ const Search = ({ notifyRef, themeRef }) => {
     const LoadPageSearch = () => {
       indexJS("Rio de Janeiro");
     };
-    
     LoadPageSearch();
-    /*window.addEventListener("load", LoadPageSearch);
-  
-    // Limpa o event listener quando o componente é desmontado
-    return () => {
-      window.removeEventListener("load", LoadPageSearch);
-    };*/
   }, []);
 
   useEffect(() => {}), [searchTerm];
