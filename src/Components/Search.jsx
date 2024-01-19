@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
-import { indexJS } from '../src/scripts/index.js';
+import { indexJS } from '../scripts/index.js';
 
 const Search = ({ notifyRef, themeRef }) => {
 

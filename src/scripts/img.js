@@ -1,11 +1,13 @@
-export const imgJS = (currentWeather, currentWeatherID, currentHour) => {
+export const imgJS = (currentWeather, currentWeatherID, sunrise, sunset, currentHour) => {
   // Pegando referências do DOM
   const weatherIMGDOM = document.querySelector(".weather-img");
   let timeReference = "";
   let correctHour = parseInt(currentHour.split(":")[0]);
+  let correctSunset = parseInt(sunset.split(":")[0]);
+  let correctSunrise = parseInt(sunrise.split(":")[0]);
   
   // Lógica para a imagem
-  if (correctHour >= 18 || correctHour <= 5) {
+  if (correctHour >= correctSunset || correctHour <= correctSunrise) {
     timeReference = "night";
   } else {
     timeReference = "day";

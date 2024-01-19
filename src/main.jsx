@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import pages
-import MainComponent from "./MainComponent.jsx";
+import MainComponent from "./Components/MainComponent.jsx";
 import Info from "./pages/Info.jsx";
 import Settings from "./pages/Settings.jsx";
 import NotFound from "./pages/NotFound.jsx";

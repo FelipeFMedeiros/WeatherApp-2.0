@@ -72,6 +72,8 @@ export const indexJS = (searchTerm) => {
           let currentWeather = dataWeather.current.weather[0].main;
           let currentWeatherDescription = dataWeather.current.weather[0].description;
           let currentWeatherID = dataWeather.current.weather[0].id;
+          let sunrise = dataWeather.current.sunrise;
+          let sunset = dataWeather.current.sunset;
 
           // Escrevendo dados no DOM
           tittleDOM.innerText = getMainAddress(dataLocation.results[0].address_components);
@@ -101,7 +103,7 @@ export const indexJS = (searchTerm) => {
           }
           
           // IMG do clima
-          imgJS(currentWeather, currentWeatherID, convertTime(currentHour, currentTimezone).returnTime);
+          imgJS(currentWeather, currentWeatherID, convertTime(sunrise, currentTimezone).returnTime, convertTime(sunset, currentTimezone).returnTime, convertTime(currentHour, currentTimezone).returnTime);
 
           console.log(`${currentWeather} (${currentWeatherID}): ${currentWeatherDescription}`);
           console.table(convertTime(currentHour, currentTimezone));
