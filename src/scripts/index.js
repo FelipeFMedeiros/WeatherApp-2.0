@@ -103,6 +103,8 @@ export const indexJS = (searchTerm) => {
           // IMG do clima
           imgJS(currentWeather, currentWeatherID, convertTime(currentHour, currentTimezone).returnTime);
 
+          console.log(`${currentWeather} (${currentWeatherID}): ${currentWeatherDescription}`);
+          console.table(convertTime(currentHour, currentTimezone));
           // Tempo de execução
           const end = performance.now();
           console.log(`Tempo de execução: ${end - start} ms`);
@@ -124,7 +126,6 @@ export const indexJS = (searchTerm) => {
     var date = new Date(unixTimestamp * 1000);
     // Converte para a data e hora local do usuário
     var fullDateTime = date.toLocaleString("pt-BR", { timeZone: timezone });
-    console.log(fullDateTime + " = " + timezone);
     // Converte para a data e hora local do usuário separadamente
     let returnTime = date.toLocaleString("pt-BR", {
       timeZone: timezone,
@@ -135,6 +136,6 @@ export const indexJS = (searchTerm) => {
       dateStyle: "full",
     });
 
-    return { fullDateTime, returnTime, returnDate };
+    return { fullDateTime, returnTime, returnDate, timezone };
   }
 };
