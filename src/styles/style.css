@@ -304,6 +304,7 @@ body {
 }
 
 .content main .header .left .breadcrumb li {
+  font-size: 19px;
   color: var(--dark);
 }
 
