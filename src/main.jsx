@@ -9,6 +9,10 @@ import Stats from "./Stats.jsx";
 import Previsions from "./Previsions.jsx";
 import Loading from "./Loading.jsx";
 import { SidebarProvider } from "./SidebarContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Info from "./pages/Info.jsx";
+import Settings from "./pages/Settings.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function MainComponent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +28,6 @@ function MainComponent() {
   }
 
   return (
-    <React.StrictMode>
       <ThemeProvider>
         <SidebarProvider>
           <SideBar />
@@ -80,9 +83,19 @@ function MainComponent() {
           </div>
         </SidebarProvider>
       </ThemeProvider>
-    </React.StrictMode>
   );
 }
 export default MainComponent;
 
-ReactDOM.createRoot(document.getElementById("root")).render(<MainComponent />);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainComponent />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>
+);
