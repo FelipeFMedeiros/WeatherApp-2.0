@@ -12,6 +12,8 @@ export const indexJS = (searchTerm) => {
   const subTittleDOM = document.querySelector(".subtittle-formated-address");
   const timeDOM = document.querySelector(".time-container");
   const dateDOM = document.querySelector(".date-container");
+  const sunriseDOM = document.querySelector(".sunrise-text")
+  const sunsetDOM = document.querySelector(".sunset-text");
 
   const tempContainerI = document.querySelector(".content main .insights div:nth-child(1) li .bx");
   const tempContainerII = document.querySelector(".content main .insights div:nth-child(2) li .bx");
@@ -85,6 +87,8 @@ export const indexJS = (searchTerm) => {
           umidityDOM.innerHTML = `${currentHumidity}%`;
           windDOM.innerHTML = `${Math.round(currentWind)}km/h`;
           weatherTitleDOM.innerHTML = currentWeatherDescription.charAt(0).toUpperCase() + currentWeatherDescription.slice(1);
+          sunriseDOM.innerHTML = convertTime(sunrise, currentTimezone).returnTime;
+          sunsetDOM.innerHTML = convertTime(sunset, currentTimezone).returnTime;
 
           // Lógica para mudar a cor do background do ícone de temperatura
           if (currentTemp <= 26) { // Temperatura atual
