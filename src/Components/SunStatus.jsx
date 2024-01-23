@@ -14,13 +14,13 @@ function SunStatus() {
   return (
     <div className="sun-status">
       <div className="sunrise">
-        <h2>Nascer do sol</h2>
         <img src={sunrise} style={{height: 100}} />
+        <h2>Nascer do sol</h2>
         <p className="sunrise-text"></p>
       </div>
       <div className="sunset">
-        <h2>Por do sol</h2>
         <img src={sunset} style={{height: 100}} />
+        <h2>Por do sol</h2>
         <p className="sunset-text"></p>
       </div>
     </div>
