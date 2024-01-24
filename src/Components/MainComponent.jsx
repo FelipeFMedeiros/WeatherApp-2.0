@@ -1,5 +1,3 @@
-// Import react
-import { useState, useEffect } from "react";
 // Import components
 import { ThemeProvider } from "./ThemeProvider";
 import SideBar from "./SideBar.jsx";
@@ -12,18 +10,6 @@ import Loading from "./Loading.jsx";
 import { SidebarProvider } from "./SidebarContext";
 
 function MainComponent() {
-    const [isLoading, setIsLoading] = useState(true);
-  
-    useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }, []);
-  
-    if (isLoading) {
-      console.log("Loading...");
-    }
-  
     return (
         <ThemeProvider>
           <SidebarProvider>
@@ -35,16 +21,15 @@ function MainComponent() {
               <div
                 className="loader"
                 style={{
-                  display: isLoading ? "flex" : "none",
-                  animation: isLoading ? "" : "fadeOut 0.5s forwards",
+                  display: "flex",
                 }}>
                   <Loading/>
               </div>
   
               <main
+                className="main-container"
                 style={{
-                  display: isLoading ? "none" : "block",
-                  animation: "fadeIn 1s forwards",
+                  display: "none",
                 }}>
                 <Header />
   
