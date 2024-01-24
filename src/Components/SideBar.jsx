@@ -14,7 +14,7 @@ function SideBar() {
   return (
     <div className={`sidebar ${isSidebarClosed ? 'close' : ''}`}>
       {/* Restante do conteúdo do Sidebar */}
-      <a href="#" className="logo">
+      <a href="/" className="logo">
         <i className='bx'><img src={logoPath} alt="Logo"/></i>
         <div className="logo-name"><span>WeatherApp </span>2.0</div>
       </a>
