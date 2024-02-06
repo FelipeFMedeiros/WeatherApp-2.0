@@ -11,9 +11,9 @@ export const indexJS = (searchTerm) => {
   loaderContainer.style.display = "flex";
 
   // Pegando APIs do .env
-  const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+  /*const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
   const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-  ////const TIMEZONE_API_KEY = import.meta.env.VITE_TIMEZONE_API_KEY;
+  const TIMEZONE_API_KEY = import.meta.env.VITE_TIMEZONE_API_KEY;*/
 
   // Pegando referências do DOM
   const tittleDOM = document.querySelector(".tittle-location-name");
@@ -41,60 +41,41 @@ export const indexJS = (searchTerm) => {
   // Lógica para o fetch do Google Maps Geocoding API
   let city = searchTerm;
   fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${GOOGLE_API_KEY}`
+    `http://127.0.0.1:5000/get/?search=${city}`
   )
     .then((response) => response.json())
-    .then((dataLocation) => {
-      // Tratamento de erro
-      if (dataLocation.status != "OK") {
-        console.log("Erro em Google Geocoding API.");
-        if (dataLocation.status == "ZERO_RESULTS") {
-          alert("Nenhum resultado encontrado. Tente novamente.");
-        }
-        throw new Error(
-          `${dataLocation.status}\n${dataLocation.error_message}`
-        );
-      }
+    .then((APIdata) => {
 
-      // Pegando dados da GeoCoding
-      let lat = dataLocation.results[0].geometry.location.lat;
-      let lng = dataLocation.results[0].geometry.location.lng;
-      console.log(`SearchTerm: ${city}:\nLatitude: ${lat} | Longitude: ${lng}`);
+          // Pegando dados do local
+          let currentCountry = APIdata.location.country;
+          let currentState = APIdata.location.region;
+          let currentName = APIdata.location.name;
+          let adressType = APIdata.location.adresstype;
+          let tempName;
 
-      // Lógica para o fetch do OpenWeatherMap One Call API
-      fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&units=metric&lang=pt_br&exclude=minutely,hourly,daily&appid=${WEATHER_API_KEY}`
-      )
-        .then((response) => response.json())
-        .then((dataWeather) => {
-          // Tratamento de erro
-          if (dataWeather.cod) {
-            console.log("Erro em OpenWeatherMap One Call API.");
-            throw new Error(`${dataWeather.cod}\n${dataWeather.message}`);
+          // Pegando de clima
+          let currentHour = APIdata.dt;
+          let currentTimezone = APIdata.timezone;
+          let currentTemp = APIdata.temperature;
+          let currentFeelsLike = APIdata.feels_like;
+          let currentHumidity = APIdata.humidity;
+          let currentWind = APIdata.wind_speed * 3.6;
+          let currentWeather = APIdata.weather.main;
+          let currentWeatherDescription = APIdata.weather.description;
+          let currentWeatherID = APIdata.weather.id;
+          let sunrise = APIdata.sunrise;
+          let sunset = APIdata.sunset;
+
+          if (adressType == "country") {
+            tempName = currentCountry;
+          } else {
+            tempName = currentName;
           }
-
-          // Pegando dados da GeoCoding
-          let formatedAdress = dataLocation.results[0].formatted_address;
-
-          // Pegando dados da OpenWeatherMap
-          let currentHour = dataWeather.current.dt;
-          let currentTimezone = dataWeather.timezone;
-          let currentTemp = dataWeather.current.temp;
-          let currentFeelsLike = dataWeather.current.feels_like;
-          let currentHumidity = dataWeather.current.humidity;
-          let currentWind = dataWeather.current.wind_speed * 3.6;
-          let currentWeather = dataWeather.current.weather[0].main;
-          let currentWeatherDescription =
-            dataWeather.current.weather[0].description;
-          let currentWeatherID = dataWeather.current.weather[0].id;
-          let sunrise = dataWeather.current.sunrise;
-          let sunset = dataWeather.current.sunset;
-
+          
           // Escrevendo dados no DOM
-          tittleDOM.innerText = getMainAddress(
-            dataLocation.results[0].address_components
-          );
-          subTittleDOM.innerText = formatedAdress;
+          tittleDOM.innerText = tempName;
+          
+          subTittleDOM.innerText = `${currentName}, ${currentState}, ${currentCountry}`;
           timeDOM.innerHTML = convertTime(
             currentHour,
             currentTimezone
@@ -157,18 +138,9 @@ export const indexJS = (searchTerm) => {
             mainContainer.style.display = "block";
             mainContainer.style.animation = "fadeIn 0.5s forwards";
           }, 500);
-        });
+        
     });
 
-  // Função para gerenciar locais buscados
-  function getMainAddress(addressComponents) {
-    for (let i = 0; i < addressComponents.length; i++) {
-      const component = addressComponents[i];
-      if (!["postal_code", "street_number"].includes(component.types[0])) {
-        return component.long_name;
-      }
-    }
-  }
   // Função para converter a hora Unix para o fuso horário do local buscado
   function convertTime(unixTimestamp, timezone) {
     // Converte o timestamp Unix para milissegundos
