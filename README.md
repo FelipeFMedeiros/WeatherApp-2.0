@@ -54,6 +54,7 @@ Aqui virão screenshots do projeto:
 ## Autores
 
 - [@FelipeFMedeiros](https://www.github.com/felipefmedeiros)
+- [@LuterKinggg](https://github.com/LuterKinggg)
 
 <br/>
 
