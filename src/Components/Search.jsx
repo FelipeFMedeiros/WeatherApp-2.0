@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
-import { indexJS } from '../scripts/index.js';
+import { indexJS } from "../scripts/index.js";
+import { findIP } from "../scripts/findIP.js";
 
 const Search = ({ notifyRef, themeRef }) => {
-
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
   const searchButtonRef = useRef(null);
@@ -12,8 +12,9 @@ const Search = ({ notifyRef, themeRef }) => {
 
   useEffect(() => {
     const LoadPageSearch = () => {
-      indexJS("Rio de Janeiro");
+      findIP().then(location => indexJS(location));
     };
+    
     LoadPageSearch();
   }, []);
 
@@ -58,7 +59,10 @@ const Search = ({ notifyRef, themeRef }) => {
           "revealFromLeft 1.5s forwards";
         searchInputRef.current.style.animation = "revealFromLeft 1.5s forwards";
 
-        if (searchTermRef.current.trim() == "" && searchInputRef.current.classList.contains("show")) {
+        if (
+          searchTermRef.current.trim() == "" &&
+          searchInputRef.current.classList.contains("show")
+        ) {
           searchInputRef.current.classList.remove("show");
         }
       }
@@ -144,8 +148,9 @@ const Search = ({ notifyRef, themeRef }) => {
           searchIconRef.current.style.color = "var(--light)";
           searchIconRef.current.classList.replace("bx-x", "bx-search");
         }
-        
-        searchButtonRef.current.style.animation = "revealFromLeft 1.5s forwards";
+
+        searchButtonRef.current.style.animation =
+          "revealFromLeft 1.5s forwards";
         notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
         themeRef.current.style.animation = "slideOutRight 1.5s forwards";
         setTimeout(() => {

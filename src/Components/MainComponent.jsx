@@ -1,5 +1,5 @@
 // Import components
-import { ThemeProvider } from "./ThemeProvider";
+import { ThemeProvider } from "./ThemeProvider.jsx";
 import SideBar from "./SideBar.jsx";
 import NavBar from "./NavBar.jsx";
 import Header from "./Header.jsx";
@@ -7,7 +7,7 @@ import Insight from "./Insight.jsx";
 import Stats from "./Stats.jsx";
 import Previsions from "./Previsions.jsx";
 import Loading from "./Loading.jsx";
-import { SidebarProvider } from "./SidebarContext";
+import { SidebarProvider } from "./SidebarContext.jsx";
 
 function MainComponent() {
     return (
