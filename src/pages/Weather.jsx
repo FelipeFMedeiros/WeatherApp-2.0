@@ -1,15 +1,15 @@
 // Import components
-import { ThemeProvider } from "./ThemeProvider.jsx";
-import SideBar from "./SideBar.jsx";
-import NavBar from "./NavBar.jsx";
-import Header from "./Header.jsx";
-import Insight from "./Insight.jsx";
-import Stats from "./Stats.jsx";
-import Previsions from "./Previsions.jsx";
-import Loading from "./Loading.jsx";
-import { SidebarProvider } from "./SidebarContext.jsx";
+import { ThemeProvider } from "../Components/ThemeProvider.jsx";
+import SideBar from "../Components/SideBar.jsx";
+import NavBar from "../Components/NavBar.jsx";
+import Header from "../Components/Header.jsx";
+import Insight from "../Components/Insight.jsx";
+import Stats from "../Components/Stats.jsx";
+import Previsions from "../Components/Previsions.jsx";
+import Loading from "../Components/Loading.jsx";
+import { SidebarProvider } from "../Components/SidebarContext.jsx";
 
-function MainComponent() {
+function Weather() {
     return (
         <ThemeProvider>
           <SidebarProvider>
@@ -67,4 +67,4 @@ function MainComponent() {
         </ThemeProvider>
     );
   }
-  export default MainComponent;
+  export default Weather;

@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-Para Fazer.txt
+- Para Fazer.txt
 
 # Editor directories and files
 .env
