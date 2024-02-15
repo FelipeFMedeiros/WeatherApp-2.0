@@ -53,6 +53,27 @@ body {
   overflow-x: hidden;
 }
 
+/* Estilo da barra de rolagem */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Estilo do track (parte de trás da barra de rolagem) */
+::-webkit-scrollbar-track {
+  background: var(--grey); 
+}
+ 
+/* Estilo do handle (parte móvel da barra de rolagem) */
+::-webkit-scrollbar-thumb {
+  background: var(--dark); 
+  border-radius: 5px;
+}
+
+/* Estilo do handle ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-grey); 
+}
+
 .sidebar {
   position: fixed;
   top: 0;
