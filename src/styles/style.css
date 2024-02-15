@@ -254,6 +254,10 @@ body {
   cursor: pointer;
 }
 
+.content nav form button i {
+  font-weight: 500;
+}
+
 .content nav .notif {
   font-size: 20px;
   position: relative;
@@ -327,7 +331,7 @@ body {
   align-items: center;
   justify-content: center;
   grid-gap: 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .content main .insights {
