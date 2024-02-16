@@ -3,16 +3,16 @@ export const findIP = () => {
     return fetch("https://api64.ipify.org?format=json")
     .then((response) => response.json())
     .then((dataIP) => {
-        return fetch(`http://ip-api.com/json/${dataIP.ip}`)
+        return fetch(`https://ipapi.co/${dataIP.ip}/json/`)
         .then((response) => response.json())
         .then((dataLoc) => {
-            if (dataLoc.status == "fail") { // Tratamento de erro: IP não esperado
-                console.error(`Erro na pesquisa do local. IP: ${dataIP.ip}\n${dataLoc.status}: ${dataLoc.message}`);
+            if (dataLoc.error) { // Tratamento de erro: IP não esperado
+                console.error(`Erro na pesquisa do local. IP: ${dataIP.ip}\nerror: ${dataLoc.error}`);
                 return location;
             }
             const city = dataLoc.city;
             const region = dataLoc.region;
-            const country = dataLoc.country;
+            const country = dataLoc.country_name;
     
             location = `${city} ${region} ${country}`;
             return location;
