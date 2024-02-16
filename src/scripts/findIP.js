@@ -12,7 +12,7 @@ export const findIP = () => {
             }
             const city = dataLoc.city;
             const region = dataLoc.region;
-            const country = dataLoc.country_name;
+            const country = dataLoc.country;
     
             location = `${city} ${region} ${country}`;
             return location;
