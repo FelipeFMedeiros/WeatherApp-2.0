@@ -3,7 +3,7 @@ export const findIP = () => {
     return fetch("https://api64.ipify.org?format=json")
     .then((response) => response.json())
     .then((dataIP) => {
-        return fetch(`https://ipapi.co/${dataIP.ip}/json/`)
+        return fetch(`http://ip-api.com/json/${dataIP.ip}`)
         .then((response) => response.json())
         .then((dataLoc) => {
             if (dataLoc.error) { // Tratamento de erro: IP não esperado
