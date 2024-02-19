@@ -235,13 +235,12 @@ body {
   color: var(--dark);
 }
 
+
 .content nav form {
+  animation: fadeIn 2s forwards;
   max-width: 400px;
   width: 100%;
   margin-right: auto;
-}
-
-.content nav form {
   display: flex;
   align-items: center;
   height: 50px;
@@ -279,7 +278,11 @@ body {
   font-weight: 500;
 }
 
+.theme-toggle {
+  animation: fadeIn 2s forwards;
+}
 .content nav .notif {
+  animation: fadeIn 2s forwards;
   font-size: 20px;
   position: relative;
 }
@@ -534,7 +537,7 @@ body {
     display: none;
   }
 
-  form button {
+  .content nav form button {
     width: auto;
     height: auto;
     background: transparent;
@@ -543,18 +546,17 @@ body {
   }
 
   form.show input {
-    animation: revealFromLeft 1s forwards;
+    animation: fadeIn 1s forwards;
+    display: flex;
     width: 100%;
   }
 
-  form.show button {
-    animation: revealFromLeft 1s forwards;
-    width: 36px;
-    height: 100%;
+  .content nav form.show button {
+    animation: fadeIn 1s forwards;
     color: var(--light);
-    background: var(--danger);
-    border-radius: 0 36px 36px 0;
-    display: none;
+    height: 100%;
+    width: calc(20%);
+    
   }
 
   .content main .insights {
@@ -729,6 +731,18 @@ body {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes fontSize {
+  0% {
+    font-size: 13px;
+  }
+  50% {
+    font-size: 20px;
+  }
+  100% {
+    font-size: 13px;
   }
 }
 

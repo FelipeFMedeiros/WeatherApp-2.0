@@ -9,12 +9,13 @@ function NavBar() {
 
   const notifyRef = useRef(null);
   const themeRef = useRef(null);
+  const navRef = useRef(null);
 
   return (
-    <nav>
+    <nav ref={navRef}>
       <i className="bx bx-menu" onClick={toggleSidebar}></i>
 
-      <Search notifyRef={notifyRef} themeRef={themeRef} />
+      <Search notifyRef={notifyRef} themeRef={themeRef} navRef={navRef} />
 
       <label htmlFor="theme-toggle" className="switch theme-toggle" ref={themeRef}>
         <span className="sun">

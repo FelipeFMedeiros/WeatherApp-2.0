@@ -3,193 +3,135 @@ import { useEffect, useState, useRef } from "react";
 import { indexJS } from "../scripts/index.js";
 import { findIP } from "../scripts/findIP.js";
 
-const Search = ({ notifyRef, themeRef }) => {
+const Search = ({ notifyRef, themeRef, navRef }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const searchInputRef = useRef(null);
   const searchButtonRef = useRef(null);
   const searchIconRef = useRef(null);
   const searchTermRef = useRef("");
+  let inputValue = "";
+  const windowWidth = useRef(window.innerWidth);
 
   useEffect(() => {
     const LoadPageSearch = () => {
-      findIP().then(location => indexJS(location));
+      findIP().then((location) => indexJS(location));
     };
-    
     LoadPageSearch();
+
+    const handleResize = () => {
+      if (window.innerWidth > 576) {
+        searchButtonRef.current.style.background = "var(--primary)";
+        searchIconRef.current.className = "bx bx-search";
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("load", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("load", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
+    };
   }, []);
 
-  useEffect(() => {}), [searchTerm];
+  /*useEffect(() => {
+    if (window.innerWidth !== windowWidth.current) {
+      if (window.innerWidth < 576 && inputValue != "") {
+        setIsButtonClicked(true);
+        checkInputValue();
+        searchInputRef.current.focus();
 
-  // Detecta as mudanças no input de pesquisa
+        notifyRef.current.style.display = "none";
+        themeRef.current.style.display = "none";
+      } else {
+        setIsButtonClicked(false);
+        searchButtonRef.current.style.background = "none";
+        searchIconRef.current.className = "bx bx-search";
+      }
+    }
+  }, [inputValue, windowWidth.current]);*/
+
+  useEffect(() => {
+    if (window.innerWidth < 576) {
+      if (isButtonClicked) {
+        checkInputValue();
+        searchInputRef.current.focus();
+        notifyRef.current.style.display = "none";
+        themeRef.current.style.display = "none";
+      } else {
+        notifyRef.current.style.display = "";
+        themeRef.current.style.display = "";
+        searchButtonRef.current.style.background = "none";
+      }
+    }
+  }, [isButtonClicked]);
+
   const handleInputChange = (e) => {
-    const inputValue = e.target.value;
+    inputValue = e.target.value;
     setSearchTerm(inputValue);
     searchTermRef.current = inputValue;
 
+    checkInputValue();
+  };
+
+  // Função que verifica inputValue
+  const checkInputValue = () => {
     if (window.innerWidth < 576) {
-      if (inputValue != "") {
-        searchButtonRef.current.style.background = "var(--primary)";
-        searchIconRef.current.classList.replace("bx-x", "bx-search");
-      } else {
+      if (inputValue == "") {
+        searchIconRef.current.className = "bx bx-x";
         searchButtonRef.current.style.background = "var(--danger)";
-        searchIconRef.current.classList.replace("bx-search", "bx-x");
+      } else {
+        searchIconRef.current.className = "bx bx-search";
+        searchButtonRef.current.style.background = "var(--primary)";
       }
     }
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      notifyRef.current.style.animation = "none";
-      themeRef.current.style.animation = "none";
-      searchButtonRef.current.style.animation = "none";
-      searchInputRef.current.style.animation = "none";
-
-      if (window.innerWidth > 576) {
-        searchButtonRef.current.style.background = "var(--primary)";
-        searchIconRef.current.style.color = "var(--light)";
-        searchIconRef.current.classList.replace("bx-x", "bx-search");
-
-        notifyRef.current.style.display = "block";
-        themeRef.current.style.display = "block";
-        searchButtonRef.current.style.display = "";
-        searchInputRef.current.style.display = "";
-        notifyRef.current.style.animation = "slideOutLeft 1.5s forwards";
-        themeRef.current.style.animation = "slideOutLeft 1.5s forwards";
-        searchButtonRef.current.style.animation =
-          "revealFromLeft 1.5s forwards";
-        searchInputRef.current.style.animation = "revealFromLeft 1.5s forwards";
-
-        if (
-          searchTermRef.current.trim() == "" &&
-          searchInputRef.current.classList.contains("show")
-        ) {
-          searchInputRef.current.classList.remove("show");
-        }
-      }
-      if (window.innerWidth < 576) {
-        if (
-          searchTermRef.current.trim() == "" &&
-          searchInputRef.current.classList.contains("show") == false
-        ) {
-          searchButtonRef.current.style.background = "transparent";
-          searchIconRef.current.style.color = "var(--dark)";
-        }
-
-        if (searchTermRef.current.trim() != "") {
-          searchInputRef.current.classList.toggle("show");
-
-          searchButtonRef.current.style.background = "var(--primary)";
-          searchIconRef.current.style.color = "var(--light)";
-          searchIconRef.current.classList.replace("bx-x", "bx-search");
-          searchButtonRef.current.style.display = "none";
-
-          searchInputRef.current.style.animation =
-            "revealFromLeft 1.5s forwards";
-          searchButtonRef.current.style.animation =
-            "revealFromLeft 1.5s forwards";
-          notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
-          themeRef.current.style.animation = "slideOutRight 1.5s forwards";
-          setTimeout(() => {
-            if (window.innerWidth < 576) {
-              notifyRef.current.style.display = "none";
-              themeRef.current.style.display = "none";
-              searchInputRef.current.style.display = "block";
-              searchButtonRef.current.style.display = "block";
-            }
-          }, 500);
-        }
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener("load", handleResize);
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("orientationchange", handleResize);
-
-    // Remover o listener quando o componente for desmontado
-    return () => {
-      window.removeEventListener("load", handleResize);
-      window.removeEventListener("resize", handleResize);
-      window.addEventListener("orientationchange", handleResize);
-    };
-  }, [notifyRef, themeRef]);
-
-  // Detecta o clique no botão de pesquisa
+  // Função para lidar com o clique no botão de pesquisa
   const handleSearchClick = (e) => {
     e.preventDefault();
-    if (
+
+    if (window.innerWidth < 576) {
+      setIsButtonClicked(!isButtonClicked);
+    }
+
+    if (searchIconRef.current.classList.contains("bx-x")) {
+      setSearchTerm("");
+      searchIconRef.current.className = "bx bx-search";
+      searchButtonRef.current.style.background = "var(--primary)";
+    } else if (
       searchIconRef.current.classList.contains("bx-search") &&
       searchTerm.trim() !== ""
     ) {
-      //window.alert("Pesquisando: " + searchTerm);
       indexJS(searchTerm);
+      setSearchTerm("");
     }
-
-    if (window.innerWidth < 576) {
-      searchButtonRef.current.style.animation = "none";
-      searchInputRef.current.style.animation = "none";
-
-      if (searchButtonRef.current) {
-        searchButtonRef.current.style.animation = "";
-      }
-      if (searchInputRef.current) {
-        searchInputRef.current.classList.toggle("show");
-      }
-
-      if (searchInputRef.current.classList.contains("show")) {
-        if (searchTerm.trim() == "") {
-          searchButtonRef.current.style.display = "none";
-          searchButtonRef.current.style.background = "var(--danger)";
-          searchIconRef.current.style.color = "var(--light)";
-          searchIconRef.current.classList.replace("bx-search", "bx-x");
-        } else {
-          searchButtonRef.current.style.background = "var(--primary)";
-          searchIconRef.current.style.color = "var(--light)";
-          searchIconRef.current.classList.replace("bx-x", "bx-search");
-        }
-
-        searchButtonRef.current.style.animation =
-          "revealFromLeft 1.5s forwards";
-        notifyRef.current.style.animation = "slideOutRight 1.5s forwards";
-        themeRef.current.style.animation = "slideOutRight 1.5s forwards";
-        setTimeout(() => {
-          if (window.innerWidth < 576) {
-            searchButtonRef.current.style.display = "block";
-            notifyRef.current.style.display = "none";
-            themeRef.current.style.display = "none";
-            searchButtonRef.current.style.display = "block";
-            searchInputRef.current.style.display = "block";
-          }
-        }, 500);
-      } else {
-        searchIconRef.current.classList.replace("bx-x", "bx-search");
-        searchButtonRef.current.style.background = "transparent";
-        searchIconRef.current.style.color = "var(--dark)";
-
-        notifyRef.current.style.display = "block";
-        themeRef.current.style.display = "block";
-        searchButtonRef.current.style.display = "";
-        searchInputRef.current.style.display = "";
-        notifyRef.current.style.animation = "slideOutLeft 1.5s forwards";
-        themeRef.current.style.animation = "slideOutLeft 1.5s forwards";
-        searchButtonRef.current.style.animation = "slideOutLeft 1.5s forwards";
-      }
-    }
-
-    /*if (searchTerm.trim() !== "") {
-      console.log("Termo de pesquisa:", searchTerm);
-      searchIconRef.current.classList.replace("bx-x", "bx-search");
-      searchButtonRef.style.background = "";
-    }*/
-
-    setSearchTerm("");
   };
 
+  // Fecha o campo de pesquisa quando clicar fora de <form>
+  const handleClickOutside = (e) => {
+    if (window.innerWidth < 576) {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsButtonClicked(false);
+        setSearchTerm("");
+        searchIconRef.current.className = "bx bx-search";
+      }
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <form>
+    <form className={isButtonClicked ? "show" : ""}>
       <input
-        className="search"
+        className={`search`}
         type="search"
         placeholder="Pesquise sua localização"
         value={searchTerm}
