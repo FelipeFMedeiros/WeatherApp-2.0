@@ -11,52 +11,54 @@ const Search = ({ notifyRef, themeRef, navRef }) => {
   const searchIconRef = useRef(null);
   const searchTermRef = useRef("");
   let inputValue = "";
-  const windowWidth = useRef(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
+    const handleResize = () => {
+      console.log("useEffect 1");
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+
+      setWindowWidth(newWidth);
+      setWindowHeight(newHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth, windowHeight]);
+
+  useEffect(() => {
+    console.log("Window size changed!");
+    setSearchTerm("");
+
+    if (windowWidth < 576) {
+      setIsButtonClicked(false);
+      searchButtonRef.current.style.background = "none";
+      searchIconRef.current.className = "bx bx-search";
+    }
+    if (windowWidth > 576) {
+      searchButtonRef.current.style.background = "var(--primary)";
+      searchIconRef.current.className = "bx bx-search";
+    }
+  }, [windowWidth]);
+
+  useEffect(() => {
+    // Carrega o indexJS e a localização do usuário
     const LoadPageSearch = () => {
       findIP().then((location) => indexJS(location));
     };
     LoadPageSearch();
-
-    const handleResize = () => {
-      if (window.innerWidth > 576) {
-        searchButtonRef.current.style.background = "var(--primary)";
-        searchIconRef.current.className = "bx bx-search";
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize);
-    window.addEventListener("orientationchange", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("load", handleResize);
-      window.removeEventListener("orientationchange", handleResize);
-    };
   }, []);
-
-  /*useEffect(() => {
-    if (window.innerWidth !== windowWidth.current) {
-      if (window.innerWidth < 576 && inputValue != "") {
-        setIsButtonClicked(true);
-        checkInputValue();
-        searchInputRef.current.focus();
-
-        notifyRef.current.style.display = "none";
-        themeRef.current.style.display = "none";
-      } else {
-        setIsButtonClicked(false);
-        searchButtonRef.current.style.background = "none";
-        searchIconRef.current.className = "bx bx-search";
-      }
-    }
-  }, [inputValue, windowWidth.current]);*/
 
   useEffect(() => {
     if (window.innerWidth < 576) {
       if (isButtonClicked) {
-        checkInputValue();
+        searchIconRef.current.className = "bx bx-x";
+        searchButtonRef.current.style.background = "var(--danger)";
+
         searchInputRef.current.focus();
         notifyRef.current.style.display = "none";
         themeRef.current.style.display = "none";
@@ -68,24 +70,17 @@ const Search = ({ notifyRef, themeRef, navRef }) => {
     }
   }, [isButtonClicked]);
 
+  // Detecta a mudança no valor do input
   const handleInputChange = (e) => {
     inputValue = e.target.value;
     setSearchTerm(inputValue);
     searchTermRef.current = inputValue;
-
-    checkInputValue();
-  };
-
-  // Função que verifica inputValue
-  const checkInputValue = () => {
-    if (window.innerWidth < 576) {
-      if (inputValue == "") {
-        searchIconRef.current.className = "bx bx-x";
-        searchButtonRef.current.style.background = "var(--danger)";
-      } else {
-        searchIconRef.current.className = "bx bx-search";
-        searchButtonRef.current.style.background = "var(--primary)";
-      }
+    if (inputValue == "") {
+      searchIconRef.current.className = "bx bx-x";
+      searchButtonRef.current.style.background = "var(--danger)";
+    } else {
+      searchIconRef.current.className = "bx bx-search";
+      searchButtonRef.current.style.background = "var(--primary)";
     }
   };
 
@@ -95,6 +90,7 @@ const Search = ({ notifyRef, themeRef, navRef }) => {
 
     if (window.innerWidth < 576) {
       setIsButtonClicked(!isButtonClicked);
+      setSearchTerm("");
     }
 
     if (searchIconRef.current.classList.contains("bx-x")) {
@@ -111,7 +107,7 @@ const Search = ({ notifyRef, themeRef, navRef }) => {
   };
 
   // Fecha o campo de pesquisa quando clicar fora de <form>
-  const handleClickOutside = (e) => {
+  const handleClickOutside = () => {
     if (window.innerWidth < 576) {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setIsButtonClicked(false);
